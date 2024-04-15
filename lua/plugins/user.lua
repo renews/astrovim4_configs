@@ -2,6 +2,7 @@
 return {
   "rmagatti/auto-session",
   "f-person/git-blame.nvim",
+  { "echasnovski/mini.jump2d", version = false, opts = {} },
   {
     "kdheepak/lazygit.nvim",
     cmd = {
@@ -17,7 +18,16 @@ return {
     keys = {
       { "<leader>lg", ":LazyGit<CR>", desc = "LazyGit" },
     },
+  }, {
+  "folke/todo-comments.nvim",
+  dependencies = { "nvim-lua/plenary.nvim" },
+  opts = {},
+  event = "VeryLazy",
+  cmd = { "TodoQuickFix" }, -- open when typing command
+  keys = {
+    { "<leader>TT", "<cmd>TodoTelescope<cr>", desc = "Open TODOs in Telescope" },
   },
+},
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
