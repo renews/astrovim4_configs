@@ -13,8 +13,6 @@ return {
           ["<C-l>"] = { "<C-w>l", desc = "Navigate to the right window" },
           ["<leader>bn"] = { ":enew<CR>", desc = "New buffer", name = "Buffers" },
           ["<C-q>"] = { ":bd<CR>", silent = true, noremap = true, desc = "Close buffer" },
-          ["<leader>b"] = { name = "Buffers" },
-          ["<leader>s"] = { name = "Search & replace" },
 
           -- clipboard management
           ["<leader>Y"] = { [["+Y]], desc = "Copy to clipboard" },
