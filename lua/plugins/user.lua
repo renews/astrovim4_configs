@@ -1,7 +1,38 @@
 ---@type LazySpec
 return {
-  "rmagatti/auto-session",
   "f-person/git-blame.nvim",
+  {
+    "nvim-pack/nvim-spectre",
+    opts = {},
+    keys = {
+      {
+        "<C-F>",
+        ":lua require('spectre').open()<CR>",
+        desc = "search",
+      },
+      {
+        "<C-f>",
+        ":lua require('spectre').open_file_search()<CR>",
+        desc = "search in file",
+      },
+      {
+        "<C-f>w",
+        ":lua require('spectre').open_file_search({select_word=true})<CR>",
+        desc = "search word in file",
+      },
+      {
+        "<C-F>w",
+        ":lua require('spectre').open_visual({select_word=true, replace=true})<CR>",
+        desc = "search and replace current word",
+      },
+    },
+  },
+  {
+    "mbbill/undotree",
+    keys = {
+      { "<leader>U", ":UndotreeToggle<CR>", desc = "Toggle undotree" },
+    },
+  },
   { "echasnovski/mini.jump2d", version = false, opts = {} },
   {
     "folke/todo-comments.nvim",
@@ -23,10 +54,10 @@ return {
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
     config = function()
-      require("nvim-surround").setup({
+      require("nvim-surround").setup {
         -- Configuration here, or leave empty to use defaults
-      })
-    end
+      }
+    end,
   },
   -- == Examples of Overriding Plugins ==
 
