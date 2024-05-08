@@ -1,7 +1,5 @@
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
 -- Configuration documentation can be found with `:h astrocore`
--- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
---       as this provides autocomplete and documentation while editing
 
 ---@type LazySpec
 return {
@@ -10,11 +8,11 @@ return {
   opts = {
     features = {
       large_buf = { size = 1024 * 500, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
-      autopairs = true, -- enable autopairs at start
-      cmp = true, -- enable completion at start
-      diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
-      highlighturl = true, -- highlight URLs at start
-      notifications = true, -- enable notifications at start
+      autopairs = true,                                 -- enable autopairs at start
+      cmp = true,                                       -- enable completion at start
+      diagnostics_mode = 3,                             -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
+      highlighturl = true,                              -- highlight URLs at start
+      notifications = true,                             -- enable notifications at start
     },
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
     diagnostics = {
@@ -23,14 +21,15 @@ return {
     },
     -- vim options can be configured here
     options = {
-      opt = { -- vim.opt.<key>
+      opt = {                  -- vim.opt.<key>
         relativenumber = true, -- sets vim.opt.relativenumber
-        number = true, -- sets vim.opt.number
-        spell = false, -- sets vim.opt.spell
-        signcolumn = "auto", -- sets vim.opt.signcolumn to auto
-        wrap = false, -- sets vim.opt.wrap
+        number = true,         -- sets vim.opt.number
+        spell = false,         -- sets vim.opt.spell
+        signcolumn = "auto",   -- sets vim.opt.signcolumn to auto
+        wrap = true,           -- sets vim.opt.wrap
+        colorcolumn = "120",   -- sets vim.opt.colorcolumn to 12
       },
-      g = { -- vim.g.<key>
+      g = {                    -- vim.g.<key>
         -- configure global vim variables (vim.g)
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file
@@ -59,6 +58,28 @@ return {
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
         ["<Leader>b"] = { desc = "Buffers" },
+        ["<C-h>"] = { "<C-w>h", desc = "Navigate to the left window" },
+        ["<C-j>"] = { "<C-w>j", desc = "Navigate to the bottom window" },
+        ["<C-k>"] = { "<C-w>k", desc = "Navigate to the top window" },
+        ["<C-l>"] = { "<C-w>l", desc = "Navigate to the right window" },
+        ["<leader>bn"] = { ":enew<CR>", desc = "New buffer", name = "Buffers" },
+        ["<C-q>"] = { ":bd<CR>", silent = true, noremap = true, desc = "Close buffer" },
+
+        -- clipboard management
+        ["<leader>Y"] = { [["+Y]], desc = "Copy to clipboard" },
+        ["<leader>y"] = { [["+y]], desc = "Copy to clipboard" },
+        ["<leader>dd"] = { [["+dd]], desc = "Cut line to clipboard" },
+        ["<leader>pp"] = { [["+pp]], desc = "Paste line from clipboard" },
+
+        -- quickfix
+        ["<C-kk>"] = { "<cmd>cnext<CR>zz", desc = "Next quickfix item" },
+        ["<C-jj>"] = { "<cmd>cprev<CR>zz", desc = "Previous quickfix item" },
+        ["<leader>k"] = { "<cmd>lnext<CR>zz", desc = "Next location list item" },
+        ["<leader>j"] = { "<cmd>lprev<CR>zz", desc = "Previous location list item" },
+
+        ["<leader>sc"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], desc = "Search and replace" },
+        ["<leader>xe"] = { "<cmd>!chmod +x %<CR>", silent = true, desc = "Set file as executable" },
+
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
       },

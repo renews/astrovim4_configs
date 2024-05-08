@@ -5,7 +5,7 @@ return {
     opts = {
       options = {
         opt = {
-          showtabline = 0,
+          -- showtabline = 0,
         },
       },
     },
